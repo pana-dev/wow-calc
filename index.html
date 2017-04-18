@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rogue Calculator</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+        }
+        
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        
+        input {
+            display: block;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 6px 12px;
+            margin-bottom: 6px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            padding: 48px 12px 24px 12px;
+            margin: 0 auto;
+        }
+        
+        .one-third {
+            display: inline-block;
+            width: 33%;
+        }
+        
+        .search {
+            display: block;
+            width: 100%;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 0;
+            background: #666;
+            color: #fff;
+            padding: 6px 12px;
+            transition: all .26s ease-in-out
+        }
+        
+        .search:hover {
+            background-color: #444;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="container">
+
+        <div class="one-third">
+            <label for="realm">Realm</label>
+            <input type="text" name="realm" id="realm" placeholder="Bleeding Hollow" value="Bleeding Hollow" />
+        </div>
+
+        <div class="one-third">
+            <label for="characterName">Character Name</label>
+            <input type="text" name="characterName" id="characterName" placeholder="Paná" value="Paná" />
+        </div>
+
+        <div class="one-third">
+            <label for="region">Region</label>
+            <select id="region">
+                    <option value="NA">NA</option>
+                </select>
+        </div>
+
+        <button class="search" id="search">Search</button>
+    </div>
+
+    <ul class="itemList" id="itemList">
+        <li class="item"><strong>Trinket:</strong> <span id="item-trinket1"></span></li>
+        <li class="item"><strong>Trinket:</strong> <span id="item-trinket2"></span></li>
+        <li class="item"><strong>Helmet:</strong> <span id="item-helmet"></span></li>
+        <li class="item"><strong>Shoulders:</strong> <span id="item-shoulder"></span></li>
+        <li class="item"><strong>Chest:</strong> <span id="item-chest"></span></li>
+        <li class="item"><strong>Back:</strong> <span id="item-back"></span></li>
+        <li class="item"><strong>Gloves:</strong> <span id="item-hands"></span></li>
+        <li class="item"><strong>Pants:</strong> <span id="item-legs"></span></li>
+        <li class="item"><strong>Belt:</strong> <span id="item-waist"></span></li>
+        <li class="item"><strong>Wrist:</strong> <span id="item-wrist"></span></li>
+        <li class="item"><strong>Feet:</strong> <span id="item-feet"></span></li>
+        <li class="item"><strong>Ring:</strong> <span id="item-finger1"></span></li>
+        <li class="item"><strong>Ring:</strong> <span id="item-finger2"></span></li>
+        <li class="item"><strong>Necklace:</strong> <span id="item-neck"></span></li>
+        <li class="item"><strong>Main Hand:</strong> <span id="item-main-hand"></span></li>
+        <li class="item"><strong>Off Hand:</strong> <span id="item-off-hand"></span></li>
+    </ul>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
