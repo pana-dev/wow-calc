@@ -8,41 +8,74 @@ var realm = document.querySelector('#realm');
 var character = document.querySelector('#characterName');
 var locale = 'en_US';
 
-// Request
-const REQUEST = new XMLHttpRequest();
+var characterData = {};
+
+// Build Character
+
+function buildCharacter(characterData) {
+
+    console.log(characterData);
+
+    const characterInfo = characterData;
+    const characterItems = characterInfo.items;
+    const characterStats = characterInfo.stats;
+    const characterTalents = characterInfo.talents;
+
+    var itemList = document.querySelector('#itemList');
+    itemList.innerHTML = '';
+
+    for (var item in characterItems) {
+
+        let row = document.createElement('li');
+
+        if (characterItems[item].icon) {
+            row.innerHTML = '<div class="item-img"><img src="http://media.blizzard.com/wow/icons/36/' + characterItems[item].icon + '.jpg" alt="' + characterItems[item].name + '" /></div><div class="item-info"><span class="item-name">' + characterItems[item].name + '</span><span class="item-level">(' + characterItems[item].itemLevel + ')</span></div>';
+            itemList.appendChild(row);
+        }
+
+    }
+
+}
+
+// Get Character Information
+
+function getCharacter(fields) {
+
+    const REQ_HEADERS = new Headers({
+        "Content-Type": "application/json"
+    });
+
+    const REQ_OPTIONS = {
+        method: 'GET',
+        headers: REQ_HEADERS,
+        mode: 'cors',
+        cache: 'default'
+    };
+
+    var request_url = BASE_URL + 'character/' + realm.value + '/' + character.value +
+        '?fields=' + fields +
+        '&locale=' + locale +
+        '&apikey=' + API_KEY;
+
+    fetch(request_url, REQ_OPTIONS).then(function(response) {
+
+        return response.json().then(function(json) {
+            characterData = json;
+        });
+
+    });
+
+}
 
 // Submit Button
 var submit = document.querySelector('#search');
 
 submit.addEventListener('click', () => {
 
-    REQUEST.open('GET', BASE_URL + 'character/' + realm.value + '/' + character.value +
-        '?fields=items+professions+stats+talents' +
-        '&locale=' + locale +
-        '&apikey=' + API_KEY
-    );
+    const FIELDS = ['items+', 'professions+', 'stats+', 'talents'];
 
-    REQUEST.responseType = 'json';
-    REQUEST.send();
+    getCharacter(FIELDS);
 
-    REQUEST.addEventListener('load', () => {
-        let characterInfo = REQUEST.response;
-        let characterItems = characterInfo.items;
-        let characterStats = characterInfo.stats;
-        let characterTalents = characterInfo.talents;
+    buildCharacter(characterData);
 
-        var itemList = document.querySelector('#itemList');
-        itemList.innerHTML = '';
-
-        for (var item in characterItems) {
-
-            let row = document.createElement('li');
-
-            if (characterItems[item].icon) {
-                row.innerHTML = '<div class="item-img"><img src="http://media.blizzard.com/wow/icons/36/' + characterItems[item].icon + '.jpg" alt="' + characterItems[item].name + '" /></div><div class="item-info"><span class="item-name">' + characterItems[item].name + '</span><span class="item-level">(' + characterItems[item].itemLevel + ')</span></div>';
-                itemList.appendChild(row);
-            }
-
-        }
-    });
 });
